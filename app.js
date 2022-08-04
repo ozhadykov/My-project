@@ -4,13 +4,20 @@ const next = document.getElementById('next')
 const circles = document.querySelectorAll('.circle')
 let questions = document.querySelectorAll('.questions')
 
-let currentActive = 1
-next.addEventListener('click', () => {
-  currentActive++
+let counterVersionA = 0
+let counterVersionB = 0
 
-  if (currentActive > circles.length){
+
+let currentActive = 1
+
+next.addEventListener('click', () => {
+
+  getTestResult()
+
+  currentActive++
+  /*if (currentActive > circles.length){
     currentActive = circles.length
-  }
+  }*/
 
   update()
 
@@ -28,7 +35,26 @@ prev.addEventListener('click', () => {
 })
 
 function update() {
-  
+
+  if (currentActive === 1){
+    prev.disabled = true
+    prev.classList.add('disabled')
+     counterVersionA = 0
+     counterVersionB = 0
+  }
+  if (currentActive === circles.length + 1){
+    next.disabled = true
+    next.classList.add('disabled')
+    console.log(currentActive, ' ', counterVersionA, ' ', counterVersionB)
+    giveResult()
+  }
+  if (currentActive !== circles.length && currentActive !== 1) {
+    next.disabled = false
+    prev.disabled = false
+    prev.classList.remove('disabled')
+    next.classList.remove('disabled')
+  }
+
   circles.forEach((circle, idx) => {
     if (idx < currentActive) {
       circle.classList.add('active')
@@ -58,18 +84,20 @@ function update() {
 
   progress.style.width = (actives.length - 1) / (circles.length - 1) * 100 + '%'
 
-  if (currentActive === 1){
-    prev.disabled = true
-    prev.classList.add('disabled')
-  }
-  if (currentActive === circles.length){
-    next.disabled = true
-    next.classList.add('disabled')
-  }
-  if (currentActive !== circles.length && currentActive !== 1) {
-    next.disabled = false
-    prev.disabled = false
-    prev.classList.remove('disabled')
-    next.classList.remove('disabled')
-  }
+}
+
+
+function getTestResult() {
+  const answers = document.getElementsByName(`jobQuestion${currentActive}`)
+
+  answers.forEach(ver => {
+    if (ver.checked) 
+      if (ver.value === 'questionOneAnswer1') counterVersionA++
+      else if (ver.value === 'questionOneAnswer2') counterVersionB++
+  })
+}
+
+
+function giveResult() {
+  
 }
