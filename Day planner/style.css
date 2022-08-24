@@ -91,7 +91,7 @@ tr:nth-child(even) {
 
 .deleteall {
   position: fixed;
-  bottom: 150px;
+  bottom: 16vh;
   margin-left: 225px;
 }
 

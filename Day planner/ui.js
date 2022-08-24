@@ -10,7 +10,7 @@ class UI {
       <td>${task.title}</td>
       <td>${task.comments}</td>
       <td>${task.time}</td>
-      <td><a href="#" class="delete">X</td>
+      <td><a href="#" class="delete">done</td>
     `
 
     list.appendChild(row)
@@ -38,7 +38,7 @@ class UI {
 
   deleteTask(target) {
     if (target.className === 'delete') {
-      target.parentElement.parentElement.remove()
+      target.parentElement.parentElement.style.backgroundColor = 'lightgreen'
     }
   }
 

@@ -27,6 +27,9 @@ document.querySelector('.task-form').addEventListener('submit', (e) => {
 
     //clear Fields 
     ui.clearFields()
+
+    //sort table
+    sortTableByTime(document.querySelector('table'), 2, true)
   }
 
 
@@ -42,7 +45,6 @@ document.querySelector('.taskcontainer').addEventListener('click', function(e){
   ui.deleteTask(e.target)
 
   //Show message
-  ui.showAlert('Book removed', 'succes')
 
   e.preventDefault()
 })
